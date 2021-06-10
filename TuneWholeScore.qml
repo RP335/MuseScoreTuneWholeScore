@@ -14,6 +14,7 @@ MuseScore {
     pluginType: "dialog"
     width: 200
     height: 200
+    property var offsetTextWidth: 40
     onRun:
     {
         console.log("hello world")
@@ -45,16 +46,22 @@ MuseScore {
     {
         var curtuning = note.tuning
         var newcents = parseFloat(desiredcents.text)
-        var newtuning
+        var newtuning2
+        var newtuning1
 
         if ( (curtuning+newcents)>100)
         {
             note.pitch +=1
-            note.tuning  = (curtuning+newcents)-100
+            newtuning1  = ((curtuning+newcents)-100)
+            note.tuning = newtuning1
+            console.log("New = "+newtuning1)
         }
         else
-            newtuning = note.tuning + newcents
-            note.tuning  = newtuning
+        {
+            newtuning2 = note.tuning + newcents
+            note.tuning  = newtuning2
+            console.log("New = "+ newtuning2)
+        }
 
 
     }
