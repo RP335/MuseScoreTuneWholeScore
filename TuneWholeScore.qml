@@ -8,7 +8,7 @@ import QtQuick.Dialogs 1.1
 
 import MuseScore 3.0
 MuseScore {
-    menuPath: "Plugins.Ratiotuner"
+    menuPath: "Plugins.TuneWholeScore"
     description: "Description goes here"
     version: "1.0"
     pluginType: "dialog"
@@ -44,14 +44,17 @@ MuseScore {
 
     {
         var curtuning = note.tuning
-        var newcents = desiredcents.text
+        var newcents = parseFloat(desiredcents.text)
+        var newtuning
+
         if ( (curtuning+newcents)>100)
         {
             note.pitch +=1
             note.tuning  = (curtuning+newcents)-100
         }
         else
-            (note.tuning)+= newcents
+            newtuning = note.tuning + newcents
+            note.tuning  = newtuning
 
 
     }
